@@ -4,10 +4,9 @@
     <section class="product_section layout_padding">
         <div class="container">
             <div class="heading_container heading_center">
-                <h2>
-                    Products
-                </h2>
+                <h2> Products </h2>
             </div>
+
             <div class="row">
                 @forelse ($products as $product)
                     <div class="col-sm-6 col-lg-4">
@@ -22,7 +21,7 @@
                                 </a>
                             </div>
                             <div class="detail-box">
-                                <span class="text-muted">{{ $category[0]->name }}</span>
+                                {{-- <span class="text-muted">{{ $category[0]->name }}</span> --}}
                                 <h3> {{ $product->title }}</h3>
                                 <p class="card-title">{{ $product->description }}</p>
                                 <div class="float-left">

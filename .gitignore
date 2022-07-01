@@ -1,6 +1,6 @@
 /node_modules
 /public/hot
-/storage/*.key
+# /storage/*.key
 /vendor
 /.idea
 /.vagrant
@@ -16,7 +16,7 @@ yarn-error.log
 !/public/media/demo
 .phpstorm.meta.php
 _ide_helper.php
-/storage
+# /storage
 /sql_queries
 /sql_queries/*.key
 # /bootstrap/cache

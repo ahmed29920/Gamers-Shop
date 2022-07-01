@@ -77,7 +77,7 @@ if (Auth::check()) {
                         <div class="user_option_box">
                             @guest
                                 <a href="{{ route('register') }}" class="account-link">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <i class="fa fa-laptop" aria-hidden="true"></i>
                                     <span>
                                         Register
                                     </span>

@@ -68,9 +68,7 @@ class HomeController extends Controller
      */
     public function CategoryIndex($id)
     {
-        $category = Categorie::get('name');
         return view('Category', [
-            'category' => $category,
             'products' => Product::where('category_id', $id)->get()
         ]);
     }
