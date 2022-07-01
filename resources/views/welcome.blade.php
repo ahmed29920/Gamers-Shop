@@ -89,7 +89,7 @@
                                 <img src="{{ asset('upload/categories/' . $category->image) }}" alt="">
                                 <a href="{{ route('category', $category->id) }}" class="add_cart_btn">
                                     <span>
-                                        Add To Cart
+                                        Read more
                                     </span>
                                 </a>
                             </div>

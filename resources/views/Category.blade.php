@@ -21,14 +21,15 @@
                 </span>
               </a>
             </div>
-            <div class="detail-box text-center">
-              <h5>
-              {{$product->name}}
-              </h5>
+            <div class="detail-box">
+              <span class="text-muted">{{$category[0]->name}}</span>
+              <h3> {{ $product->title }}</h3>
               <p class="card-title">{{$product->description}}</p>
-              <h5 class="card-title"> <del> {{$product->price}} </del></h5>
-               <h5 class="card-title">{{$product->discount}}</h5>
-              <div class="product_info">
+              <div class="float-left">
+              <h5 class="card-title"> <del> {{$product->price}} EGP </del></h5>
+               <h5 class="card-title">{{(!empty($product) && $product->discount) ? $product->discount : ''}} EGP</h5>
+              </div>
+               <div class="product_info "><a class="btn btn-success float-right" href="{{route('product',$product->id)}}"> Read more</a>
               </div>
             </div>
           </div>

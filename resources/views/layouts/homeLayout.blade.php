@@ -52,7 +52,7 @@ if (Auth::check()) {
         <!-- header section strats -->
         <header class="header_section">
             <div class="header_top">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="top_nav_container">
                         <div class="contact_nav">
                             <a href="">
@@ -75,20 +75,29 @@ if (Auth::check()) {
                             </button>
                         </from>
                         <div class="user_option_box">
-                            <!-- <a href="" class="account-link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span>
-                  My Account
-                </span>
-                
-              </a> -->
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropBtn dropdown-toggle" type="button"
-                                    id="dropdownMenu2" data-bs-toggle="dropdown">
+                            @guest
+                                <a href="{{ route('register') }}" class="account-link">
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                </button>
-                                <ul class="dropdown-menu dropMenu" id="personDrop" aria-labelledby="dropdownMenu2">
-                                    @Auth
+                                    <span>
+                                        Register
+                                    </span>
+
+                                </a>
+                                <a href="{{ route('login') }}" class="account-link">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span>
+                                        Login
+                                    </span>
+
+                                </a>
+                            @endguest
+                            @Auth
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropBtn dropdown-toggle" type="button"
+                                        id="dropdownMenu2" data-bs-toggle="dropdown">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropMenu" id="personDrop" aria-labelledby="dropdownMenu2">
                                         <li>
                                             <button class="dropdown-item" type="button">
                                                 <a href="{{ route('profile.edit') }}" class="dropLink">Profile</a>
@@ -115,21 +124,9 @@ if (Auth::check()) {
                                                 @endif
                                             </button>
                                         </li>
-                                    @endAuth
-                                    @if ($user != 1)
-                                        <li>
-                                            <button class="dropdown-item" type="button">
-                                                <a href="{{ route('login') }}" class="dropLink">Login</a>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button">
-                                                <a href="{{ route('register') }}" class="dropLink">Signin</a>
-                                            </button>
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
+                            @endAuth
                             <a href="{{ route('cartList') }}" class="cart-link">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 (<span class="cart-counter">{{ $cart }}</span> )
@@ -142,7 +139,7 @@ if (Auth::check()) {
                 </div>
             </div>
             <div class="header_bottom">
-                <div class="container-fluid">
+                <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="index.html">
                             <span>
@@ -170,6 +167,12 @@ if (Auth::check()) {
                                 </li>
                                 <li class="nav-item {{ 'contact' == request()->path() ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cartList') }}">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Checkout</a>
                                 </li>
                                 <li class="">
                                     <div class="pt-2 d-felx ">

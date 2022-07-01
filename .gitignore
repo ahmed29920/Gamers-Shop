@@ -12,15 +12,14 @@ yarn-error.log
 /package-lock.json
 /composer.lock
 /public/media/
-/public/uploads/
+/public/upload/
 !/public/media/demo
-/public/uploads/submissions/
 .phpstorm.meta.php
 _ide_helper.php
 /storage
 /sql_queries
 /sql_queries/*.key
-/bootstrap/cache
+# /bootstrap/cache
 public/orders.zip
 public/printFiles
 .vscode

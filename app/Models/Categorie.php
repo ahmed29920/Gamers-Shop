@@ -9,10 +9,10 @@ use App\Models\Product;
 class Categorie extends Model
 {
     use HasFactory;
-    protected $fillable = ['name' , 'image' ,];
+    protected $fillable = ['name' , 'image'];
 
     public function products()
     {
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Product::class);
     }
 }

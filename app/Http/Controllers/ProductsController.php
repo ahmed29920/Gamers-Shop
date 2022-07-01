@@ -11,6 +11,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 class ProductsController extends Controller
 {
     public function __construct()
@@ -50,8 +51,8 @@ class ProductsController extends Controller
     {
         $file = $request->file('image');
         $extention = $file->getClientOriginalExtension();
-        $filename = time().'.'.$extention;
-        $file->move('upload/products/' , $filename);
+        $filename = time() . '.' . $extention;
+        $file->move('upload/products/', $filename);
         Product::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -108,8 +109,8 @@ class ProductsController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
-            $file->move('upload/products/' , $filename);
+            $filename = time() . '.' . $extention;
+            $file->move('upload/products/', $filename);
             $data['image'] = $filename;
         }
         $product->update($data);
@@ -133,31 +134,30 @@ class ProductsController extends Controller
     //add to cart some items
     function addToCart(Request $request)
     {
-        if(Auth::check())
-        {   
+        if (Auth::check()) {
             $cart = new Cart;
             $cart->user_id = Auth::user()->id;
             $cart->product_id = $request->input('product_id');
-            $cart->save(); 
+            $cart->save();
             return redirect()->back();
         } else {
             return redirect('/login');
-        }            
+        }
     }
 
     //get num of items in thev cart
     static function cartItems()
     {
         $user_id = Auth::user()->id;
-        $cart = Cart::where('user_id' , $user_id)->count();
+        $cart = Cart::where('user_id', $user_id)->count();
         return $cart;
     }
     //display cart items
     function cartList()
     {
         $user_id = Auth::user()->id;
-        $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id );
-        return view('products/cartList' , ['carts' => $carts]);
+        $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id);
+        return view('products/cartList', ['carts' => $carts]);
     }
     //remove product from cart
     function removeCart($id)
