@@ -27,22 +27,22 @@ if (Auth::check()) {
 
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link type="text/css" rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
 
     <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- range slider -->
 
     <!-- font awesome style -->
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/dark.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('css/dark.css') }}" rel="stylesheet" />
 
     <!-- Custom styles for this template  public\css\style.scss-->
-    <link href="{{ asset('black/css/black-dashboard.css.map') }}" rel="stylesheet" />
-    <link href="{{ asset('black/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('black/css/black-dashboard.css.map') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('black/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
-    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
 </head>
 
@@ -287,8 +287,13 @@ if (Auth::check()) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="why.html">
-                                        Why Us
+                                    <a href="{{ route('cartList') }}">
+                                        Cart
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Checkout
                                     </a>
                                 </li>
                                 {{-- <li>
@@ -336,7 +341,7 @@ if (Auth::check()) {
             <div class="container">
                 <p>
                     &copy; <span id="displayYear"></span> All Rights Reserved By
-                    <a href=""></a>
+                    <a class="text-warning" href="http://mohamed-ali.rf.gd/">Mohamed Ali</a> & <a class="text-warning" href="">Ahmed Ashraf</a>
                 </p>
             </div>
         </footer>

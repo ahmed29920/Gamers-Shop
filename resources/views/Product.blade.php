@@ -23,8 +23,12 @@
                                             {{ $product->name }}
                                         </h5>
                                         <p class="card-title">{{ $product->description }}</p>
-                                        <h5 class="card-title"> <del> {{ $product->price }} </del></h5>
-                                        <h5 class="card-title">{{ $product->discount }}</h5>
+                                        @if (empty($product->discount))
+                                            <h5 class="card-title"> {{ $product->price }} EGP </h5>
+                                        @else
+                                            <h5 class="card-title"> <del> {{ $product->price }} EGP</del></h5>
+                                            <h5 class="card-title">{{ $product->discount }}EGP</h5>
+                                        @endif
                                         <div class="product_info">
                                         </div>
                                     </div>

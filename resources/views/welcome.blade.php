@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 @empty
-                    No Categories Yet.
+                    <p class="text-center"> No Categories Yet.</p>
                 @endforelse
 
             </div>
