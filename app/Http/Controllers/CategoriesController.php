@@ -91,7 +91,7 @@ class CategoriesController extends Controller
         $data['image'] = $filename;
       }  
       $category->update($data);
-      Session()->flash('SucessMessage','category Updated successfuly');
+      Session()->flash('success','category Updated successfuly');
       return redirect(route('categories.index'));
     }
 
@@ -104,7 +104,7 @@ class CategoriesController extends Controller
     public function destroy(Categorie $category)
     {
       $category->delete();
-      Session()->flash('message', 'category deleted successfuly.');
+      Session()->flash('error', 'category deleted successfuly.');
       return redirect(route('categories.index'));
     }
 }

@@ -62,7 +62,7 @@ class ProductsController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        Session()->flash('SucessMessage', 'Product added successfuly.');
+        Session()->flash('success', 'Product added successfuly.');
         return redirect(route('products.index',  [
             'categories' => Categorie::all(),
         ]));
@@ -114,7 +114,7 @@ class ProductsController extends Controller
             $data['image'] = $filename;
         }
         $product->update($data);
-        Session()->flash('SucessMessage', 'Product Updated successfully.');
+        Session()->flash('successe', 'Product Updated successfully.');
         return redirect(route('products.index'));
     }
 
@@ -127,7 +127,7 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        Session()->flash('success', 'Product Deleted Successfully');
+        Session()->flash('error', 'Product Deleted Successfully');
         return redirect(route('products.index'));
     }
 
@@ -163,7 +163,7 @@ class ProductsController extends Controller
     function removeCart($id)
     {
         Cart::destroy($id);
-        Session()->flash('message', 'product removed from cart successfuly.');
+        Session()->flash('error', 'product removed from cart successfuly.');
 
         return redirect()->back();
     }

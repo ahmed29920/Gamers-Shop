@@ -40,13 +40,13 @@ class OffersController extends Controller
         }
 
         $offer->save();
-        Session()->flash('SucessMessage', 'offer added successfulyy.');
+        Session()->flash('success', 'offer added successfulyy.');
         return redirect(route('offer.index'));
     }
 
     function destroy($id) {
         DB::delete('delete from offers where id = ?',[$id]);
-        Session()->flash('message', 'offer deleted successfuly.');
+        Session()->flash('error', 'offer deleted successfuly.');
         return redirect(route('offer.index'));
     }
 
@@ -81,7 +81,7 @@ class OffersController extends Controller
         }
         $offer->update($data);
         
-        Session()->flash('SucessMessage', 'offer updated successfuly.');
+        Session()->flash('success', 'offer updated successfuly.');
         
         return redirect(route('offers.index'));
 

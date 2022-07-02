@@ -341,7 +341,7 @@ if (Auth::check()) {
             <div class="container">
                 <p>
                     &copy; <span id="displayYear"></span> All Rights Reserved By
-                    <a class="text-warning" href="http://mohamed-ali.rf.gd/">Mohamed Ali</a> & <a class="text-warning" href="">Ahmed Ashraf</a>
+                    <a class="text-warning" href="http://mohamed-ali.rf.gd/">Mohamed Ali</a> & <a class="text-warning" href="https://www.linkedin.com/in/ahmed-ashraf-4b7359222/">Ahmed Ashraf</a>
                 </p>
             </div>
         </footer>
