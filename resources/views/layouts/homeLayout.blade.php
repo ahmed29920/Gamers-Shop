@@ -45,6 +45,18 @@ if (Auth::check()) {
     <link type="text/css" href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
 </head>
+<style>
+  .scroll {
+    position: relative;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    background-color: #313958 !important;
+}
+</style>
 
 <body>
 
@@ -68,8 +80,10 @@ if (Auth::check()) {
                                 </span>
                             </a>
                         </div>
-                        <form action="{{ route('search') }}" method="GET" role="search" autocomplete="off" class="search_form">
-                            <input type="text" class="form-control" name="search" placeholder="Search for product here...">
+                        <form action="{{ route('search') }}" method="GET" role="search" autocomplete="off"
+                            class="search_form">
+                            <input type="text" class="form-control" name="search"
+                                placeholder="Search for product here...">
                             <button class="" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
@@ -138,10 +152,10 @@ if (Auth::check()) {
 
                 </div>
             </div>
-            <div class="header_bottom">
+            <div class="header_bottom" id="scroll">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="">
                             <span>
                                 Gamers Shop
                             </span>
@@ -341,7 +355,9 @@ if (Auth::check()) {
             <div class="container">
                 <p>
                     &copy; <span id="displayYear"></span> All Rights Reserved By
-                    <a class="text-warning" href="http://mohamed-ali.rf.gd/">Mohamed Ali</a> & <a class="text-warning" href="https://www.linkedin.com/in/ahmed-ashraf-4b7359222/">Ahmed Ashraf</a>
+                    <a class="text-warning" href="http://mohamed-ali.rf.gd/">Mohamed Ali</a> & <a
+                        class="text-warning" href="https://www.linkedin.com/in/ahmed-ashraf-4b7359222/">Ahmed
+                        Ashraf</a>
                 </p>
             </div>
         </footer>
@@ -381,35 +397,17 @@ if (Auth::check()) {
         <script src="{{ asset('js/dark.js') }}"></script>
         {{-- <script src="{{asset('js/ion.rangeSlider.min.js')}}"></script> --}}
         <script>
-            $(document).ready(function() {
-                $(".fancybox").fancybox({
-                    openEffect: "none",
-                    closeEffect: "none"
-                });
+            var yourNavigation = $("#scroll");
+            stickyDiv = "sticky";
+            yourHeader = $('.header_top').height();
 
-                $(".zoom").hover(function() {
-
-                    $(this).addClass('transition');
-                }, function() {
-
-                    $(this).removeClass('transition');
-                });
-            });
-
-            window.onscroll = function() {
-                myFunction()
-            };
-
-            var navbar = document.getElementById("navbar");
-            var sticky = navbar.offsetTop;
-
-            function myFunction() {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky")
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > yourHeader) {
+                    yourNavigation.addClass(stickyDiv);
                 } else {
-                    navbar.classList.remove("sticky");
+                    yourNavigation.removeClass(stickyDiv);
                 }
-            }
+            });
         </script>
 </body>
 

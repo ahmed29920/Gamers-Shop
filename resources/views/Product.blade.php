@@ -32,14 +32,6 @@
                                             <div class = "product-detail">
                                                 <h2>about this product: </h2>
                                                 <p>{{$product->description}}</p>
-                                            
-                                                <ul>
-                                                <li>Color: <span>Black</span></li>
-                                                <li>Available: <span>in stock</span></li>
-                                                <li>Category: <span>Shoes</span></li>
-                                                <li>Shipping Area: <span>All over the world</span></li>
-                                                <li>Shipping Fee: <span>Free</span></li>
-                                                </ul>
                                             </div>
 
                                             <div class = "purchase-info">
