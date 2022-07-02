@@ -28,7 +28,7 @@
                                 </div>
                             </figcaption>
                             <div>
-                                <i class="ion-android-cart"><a data-productid="{{ $product->id }}" class="add_cart_btn add"> </a></i>
+                                <i class="ion-android-cart"><a data-productid="{{ $product->id }}"{{--  href="{{route('addCart',$product->id)}}" --}} class="add_cart_btn add"> </a></i>
                                 
                             </div>
 

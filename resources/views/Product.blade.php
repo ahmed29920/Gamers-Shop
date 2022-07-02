@@ -4,7 +4,8 @@
 <link type="text/css" href="{{ asset('css/product.css') }}" rel="stylesheet" />
     <section class="" style="margin-top:10rem">
         <div class="container">
-            <div class="header-body text-center mt-5 mb-3">
+            <div class="header-body mt-5 mb-3">
+                <h1 class="product-title ">Product Details</h1>
                 <div class="row justify-content-between mt-5">
                         @forelse ($products as $product)
                             <div class = "card " style="width:100%">
@@ -29,7 +30,7 @@
                                             </div>
 
                                             <div class = "product-detail">
-                                                <h2>about this item: </h2>
+                                                <h2>about this product: </h2>
                                                 <p>{{$product->description}}</p>
                                             
                                                 <ul>
