@@ -32,6 +32,7 @@ Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name(
 Route::get('/clients', [App\Http\Controllers\HomeController::class, 'clients'])->name('clients');
 Route::get('category/{id}', [App\Http\Controllers\HomeController::class, 'CategoryIndex'])->name('category');
 Route::get('product/{id}', [App\Http\Controllers\HomeController::class, 'ProductIndex'])->name('product');
+Route::get('/product-search',[App\Http\Controllers\HomeController::class ,  'search' ])->name('search');
 // Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::resource('/contact', App\Http\Controllers\ContactController::class)->except('contact.show');
 

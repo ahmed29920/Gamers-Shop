@@ -68,12 +68,12 @@ if (Auth::check()) {
                                 </span>
                             </a>
                         </div>
-                        <from class="search_form">
-                            <input type="text" class="form-control" placeholder="Search here...">
+                        <form action="{{ route('search') }}" method="GET" role="search" autocomplete="off" class="search_form">
+                            <input type="text" class="form-control" name="search" placeholder="Search for product here...">
                             <button class="" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
-                        </from>
+                        </form>
                         <div class="user_option_box">
                             @guest
                                 <a href="{{ route('register') }}" class="account-link">

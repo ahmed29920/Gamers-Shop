@@ -69,7 +69,7 @@ class HomeController extends Controller
     public function CategoryIndex($id)
     {
         return view('Category', [
-            'products' => Product::where('category_id', $id)->get()
+            'products' => Product::where('category_id', $id)->get() , 'category' => Categorie::where('id' , $id)->get()
         ]);
     }
 
@@ -83,5 +83,11 @@ class HomeController extends Controller
     {
 
         return view('Product', ['products' => Product::where('id', $id)->get()]);
+    }
+
+    //search products
+    function search(Request $request){
+        $products = Product::where('title', 'like' , '%' . $request->input('search').'%')->get();
+        return view('Product', ['products' => $products]);
     }
 }

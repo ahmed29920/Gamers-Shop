@@ -1,45 +1,41 @@
 @extends('layouts.homeLayout')
 
 @section('content')
+<link type="text/css" href="{{ asset('css/card.css') }}" rel="stylesheet" />
     <section class="product_section layout_padding">
         <div class="container">
             <div class="heading_container heading_center">
-                <h2> Products </h2>
+                <h2>{{$category[0]->name}}  Products</h2>
             </div>
 
             <div class="row">
                 @forelse ($products as $product)
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="{{ asset('upload/products/' . $product->image) }}" alt="">
-                                <a data-productid="{{ $product->id }}" class="add_cart_btn add">
-                                    <span>
-                                        <!-- Add To Cart -->
-                                        <i class="fa fa-cart-plus"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="detail-box">
-                                {{-- <span class="text-muted">{{ $category[0]->name }}</span> --}}
-                                <h3> {{ $product->title }}</h3>
-                                <p class="card-title">{{ $product->description }}</p>
-                                <div class="float-left">
+                <div class="col-sm-6 col-lg-4">
+                    <figure class="snip1423">
+                        <img src="{{ asset('upload/products/' . $product->image) }}" alt="sample57" />
+                            <a href="{{ route('product', $product->id) }}" style="height:90%">
+                            </a>
+                            <figcaption>
+                                <p>{{$category[0]->name}}</p><br>
+                                <h3>{{$product->title}}</h3>
+                                <div class="price">
                                     @if (empty($product->discount))
-                                        <h5 class="card-title"> {{ $product->price }} EGP </h5>
-                                    @else
-                                        <h5 class="card-title"> <del> {{ $product->price }} EGP</del></h5>
-                                        <h5 class="card-title">{{ $product->discount }}EGP</h5>
-                                    @endif
+                                    {{$product->price}}
+                                    @else 
+                                    <s>{{$product->price}}</s>   
+                                    {{$product->discount }}
+                                    @endif    
                                 </div>
-                                <div class="product_info "><a class="btn btn-success float-right"
-                                        href="{{ route('product', $product->id) }}"> Read more</a>
-                                </div>
+                            </figcaption>
+                            <div>
+                                <i class="ion-android-cart"><a data-productid="{{ $product->id }}" class="add_cart_btn add"> </a></i>
+                                
                             </div>
-                        </div>
+
+                        </figure>
                     </div>
                 @empty
-                    <div class="heading_center">
+                    <div class="heading_center"style="width:100%">
                         <p class="text-center ">No Products Yet.</p>
                     </div>
                 @endforelse

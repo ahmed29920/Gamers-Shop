@@ -11,7 +11,7 @@
     <div class="container-fluid  ">
       <div class="row ">
         <div class="col-md-5 ml-auto">
-          <div class="detail-box pr-md-3 ">
+          <div class="detail-box pr-md-3">
             <div class="heading_container text-dark">
               <h2>
                 We Provide Best For You

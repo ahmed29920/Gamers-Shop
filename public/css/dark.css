@@ -51,17 +51,24 @@
     background-color: #081b30 !important;
 }
 
-/* [data-theme="dark"]  .about h2 strong {
-    color: #eee !important;
+[data-theme="dark"]  .card
+{
+    background-color: #081b30 !important;
+    color: #fff !important;
+}
+[data-theme="dark"]  .card h2 
+{
+    color: #fff;
 }
 
-
-[data-theme="dark"]  .about span{
-    color: #eee !important; */
-/* } */
-
-
-
+[data-theme="dark"]  .about_section h2
+{
+    color: #fff;
+}
+[data-theme="dark"]  .about_section p
+{
+    color: #fff !important;
+}
 
 
 
