@@ -23,7 +23,7 @@ if (Auth::check()) {
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Gamers Shop</title>
+    <title>{{ trans('main.gamers_shop')}}</title>
 
 
     <!-- bootstrap core css -->
@@ -46,16 +46,17 @@ if (Auth::check()) {
 
 </head>
 <style>
-  .scroll {
-    position: relative;
-}
+    .scroll {
+        position: relative;
+    }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    z-index: 9999;
-    background-color: #313958 !important;
-}
+    .sticky {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        background-color: #313958 !important;
+        width: 100%;
+    }
 </style>
 
 <body>
@@ -157,7 +158,7 @@ if (Auth::check()) {
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="">
                             <span>
-                                Gamers Shop
+                                {{ trans('main.gamers_shop')}}
                             </span>
                         </a>
 
@@ -170,23 +171,42 @@ if (Auth::check()) {
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ">
                                 <li class="nav-item {{ '/' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('home') }}">Home <span
+                                    <a class="nav-link " href="{{ route('home') }}">{{trans('main.home')}} <span
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item {{ 'about' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('about') }}"> About</a>
+                                    <a class="nav-link " href="{{ route('about') }}"> {{trans('main.about')}}</a>
                                 </li>
                                 <li class="nav-item {{ 'shop' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('shop') }}">Shop</a>
+                                    <a class="nav-link " href="{{ route('shop') }}">{{trans('main.shop')}}</a>
                                 </li>
                                 <li class="nav-item {{ 'contact' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
+                                    <a class="nav-link" href="{{ route('contact.index') }}">{{trans('main.contact')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cartList') }}">Cart</a>
+                                    <a class="nav-link" href="{{ route('cartList') }}">{{trans('main.cart')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Checkout</a>
+                                    <a class="nav-link" href="">{{trans('main.checkout')}}</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropBtn dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-bs-toggle="dropdown">
+                                            <i class="fa fa-language" aria-hidden="true"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropMenu" id="personDrop"
+                                            aria-labelledby="dropdownMenu2">
+                                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                <li>
+                                                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                        {{ $properties['native'] }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li class="">
                                     <div class="pt-2 d-felx ">
