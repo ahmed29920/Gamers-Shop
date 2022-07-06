@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('User Profile')])
+@extends('layouts.homeLayout')
 
 @section('content')
     <div class="row">
@@ -90,13 +90,13 @@
                 <div class="card-footer">
                     <div class="button-container">
                         <button class="btn btn-icon btn-round btn-facebook">
-                            <i class="fab fa-facebook"></i>
+                            <i class="fa fa-facebook"></i>
                         </button>
                         <button class="btn btn-icon btn-round btn-twitter">
-                            <i class="fab fa-twitter"></i>
+                            <i class="fa fa-twitter"></i>
                         </button>
                         <button class="btn btn-icon btn-round btn-google">
-                            <i class="fab fa-google-plus"></i>
+                            <i class="fa fa-google-plus"></i>
                         </button>
                     </div>
                 </div>

@@ -138,6 +138,7 @@ class ProductsController extends Controller
             $cart = new Cart;
             $cart->user_id = Auth::user()->id;
             $cart->product_id = $request->input('product_id');
+            $cart->amount = $request->input('amount');
             $cart->save();
             return redirect()->back();
         } else {

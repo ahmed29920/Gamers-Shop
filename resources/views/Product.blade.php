@@ -58,24 +58,22 @@
     <script>
         $('.add').on('click', function(event) {
             event.preventDefault()
-            var amount = Number($('.amount').val());
+            var ProductAmount = Number($('.amount').val());
             productId = event.target.dataset['productid'];
             counter = $('.cart-counter').text();
             count = Number(counter);
-            alert(amount);
-            for(var i = 1 ; i <= amount ; i++ ){
-                $.ajax({
-                    method: 'GET',
-                    url: '/add-to-cart/' + productId,
-                    cache: false,
-                    data: {
-                        product_id: productId
-                    },
-                    success: function() {
-                        $('.cart-counter').text(count + amount);
-                    }
-                })
-            }
+            $.ajax({
+                method: 'GET',
+                url: '/add-to-cart/' + productId,
+                cache: false,
+                data: {
+                    product_id: productId ,
+                    amount : ProductAmount
+                },
+                success: function() {
+                    $('.cart-counter').text(count + 1);
+                }
+            })
         });
     </script>
 @endsection

@@ -59,7 +59,8 @@
                 url: '/add-to-cart/' + productId,
                 cache: false,
                 data: {
-                    product_id: productId
+                    product_id: productId , 
+                    amount : '1'
                 },
                 success: function() {
                     $('.cart-counter').text(count + 1);

@@ -1,8 +1,8 @@
-@extends('layouts.app')
-
-
+@extends('layouts.homeLayout')
 
 @section('content')
+<link type="text/css" href="{{ asset('css/cart.css') }}" rel="stylesheet" />
+
 @if($carts)
 @if(Session('message'))
     <div data-notify="container" id="alert" class="col-xs-11 col-sm-4 alert alert-info alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
@@ -26,23 +26,82 @@
         <a href="#" target="_blank" data-notify="url"></a>
     </div>
 @endif
-<div class=" d-flex justify-content-center">
+<!-- <div class=" d-flex justify-content-center">
     <a class="btn btn-success text-center " href="order-now"> BUY NOW </a>
-</div>
+</div> -->
+<h1>Shopping Cart</h1> <br>
+<div class="shopping-cart">
+    <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-details">Product</label>
+        <label class="product-price">Price</label>
+        <label class="product-quantity text-center">Quantity</label>
+        <label class="product-removal">Remove</label>
+        <label class="product-line-price">Total</label>
+    </div>
         @foreach ($carts as $cart)
-        <div class="row" style="margin-top:2rem; margin-left:5%; border-bottom: 1px solid #eee ; padding-bottom: 2rem">
-            <div class="col-sm-6">
-                <img src="{{ asset('upload/products/' . $cart->image) }}"class="detailes-img" style=" height:23rem ; width:20rem">
+        <div class="product">
+            <div class="product-image">
+                <img src="{{ asset('upload/products/' . $cart->image) }}">
             </div>
-            <div class="col-sm-6 mt-5">
-                <h2>    {{$cart->title}} </h3>
-                <h3> Price :  {{$cart->discount}}</h3>
-                <a class="btn btn-danger" Type="submit" href="remove-cart/{{$cart->id}}">REMOVE FROM CART </a>
-                
+            <div class="product-details">
+                <div class="product-title"> {{$cart->title}}</div>
+                <p class="product-description"> {{$cart->description}}</p>
             </div>
+            @if (empty($product->discount))
+            <div class="product-price">{{$cart->price}}</div>
+            @else
+            <div class="product-price">{{$cart->discount}}</div>
+            @endif
+            <div class="product-quantity text-center">
+                {{$cart->amount}}
+            </div>
+            <div class="product-removal">
+            <a class="btn btn-danger" Type="submit" href="remove-cart/{{$cart->id}}">REMOVE FROM CART </a>
+            </div>
+            @if (empty($product->discount))
+            <div class="product-line-price price">{{ $cart->amount * $cart->price }}</div>
+            @else
+            <div class="product-line-price price">{{ $cart->amount * $cart->discount }}</div>
+            @endif
         </div>
         @endforeach
+        <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value total" id="cart-subtotal"></div>
+    </div>
+    <div class="totals-item">
+      <label>Tax (5%)</label>
+      <div class="totals-value" id="cart-tax">3.60</div>
+    </div>
+    <div class="totals-item">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">15.00</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">90.57</div>
+    </div>
+  </div>
+      
+      <button class="checkout">Checkout</button>
+
+</div>
     @else
         <h4 class="text-center mt-5"> Your Cart Is Empty </h4>  
     @endif    
+    <script>
+
+        window.onload = function() {
+            var sum = 0;
+            $('.price').each(function(){
+               sum += parseFloat($(this).text());
+            });
+            if (sum) {
+                $('.total').text(sum);
+            }
+        }
+        // totalCoast();
+    </script>
 @endsection

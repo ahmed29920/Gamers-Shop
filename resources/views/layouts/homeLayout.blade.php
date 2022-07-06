@@ -429,6 +429,15 @@ if (Auth::check()) {
                 }
             });
         </script>
+                <script>
+            // $("#alert").delay(1000).hide();
+            
+            $().ready(function(){
+                
+                    $('div.alert').delay(3000);
+                    $('div.alert').hide(2000);
+            });
+        </script>
 </body>
 
 </html>

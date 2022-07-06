@@ -152,3 +152,6 @@
 [data-theme="dark"] .dropdown-menu a {
     color: #eee !important;
 }
+[data-theme="dark"] .shopping-cart .product{
+    background-color: #030e1a !important;
+}
