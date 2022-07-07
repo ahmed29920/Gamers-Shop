@@ -25,6 +25,9 @@
 [data-theme="dark"]  .product span{
     color: #eee !important;
 }
+[data-theme="dark"]  .product-title{
+    color: #eee !important;
+}
 
 
 [data-theme="dark"]  .about {
@@ -38,7 +41,6 @@
 [data-theme="dark"]  .about span{
     color: #eee !important;
 }
-
 
 [data-theme="dark"]  .why-box {
     background-color: #081b30 !important;

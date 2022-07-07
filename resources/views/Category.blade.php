@@ -2,12 +2,20 @@
 
 @section('content')
 <link type="text/css" href="{{ asset('css/card.css') }}" rel="stylesheet" />
+<div data-notify="container" id="alert" class="col-xs-11 col-sm-4 alert alert-info alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: none; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 50%; margin-top: -13px; z-index: 1062;">
+            <i class="tim-icons icon-simple-remove"></i>
+        </button>
+        <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
+        <span data-notify="title"></span> 
+        <span data-notify="message"><b>Gammers Shop</b> Product added To Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
+        <a href="#" target="_blank" data-notify="url"></a>
+</div>
     <section class="product_section layout_padding">
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>{{$category[0]->name}}  Products</h2>
             </div>
-
             <div class="row">
                 @forelse ($products as $product)
                 <div class="col-sm-6 col-lg-4">
@@ -64,6 +72,8 @@
                 },
                 success: function() {
                     $('.cart-counter').text(count + 1);
+                    $('#alert').show();
+                    $('#alert').delay(5000).show().fadeOut('slow');
                 },
             })
         });
