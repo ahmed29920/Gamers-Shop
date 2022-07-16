@@ -140,7 +140,14 @@ class ProductsController extends Controller
             $cart->product_id = $request->input('product_id');
             $cart->amount = $request->input('amount');
             $cart->save();
-            return redirect()->back();
+            // return redirect()->route('category', 1, [']);
+            // return redirect()->back();
+            $carts = Cart::all()->last();
+            // return redirect()->back()->with(compact($carts));
+            // return redirect()->back()->with($carts);
+            // return redirect()->back()->with('carts', $carts);   
+            return json_encode($carts);   
+
         } else {
             return redirect('/login');
         }
@@ -150,7 +157,7 @@ class ProductsController extends Controller
     static function cartItems()
     {
         $user_id = Auth::user()->id;
-        $cart = Cart::where('user_id', $user_id)->count();
+        $cart = Cart::where('user_id', $user_id)->sum('amount');
         return $cart;
     }
     //display cart items

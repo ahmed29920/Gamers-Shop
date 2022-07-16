@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Products;
 
 class Offer extends Model
 {
@@ -13,6 +14,6 @@ class Offer extends Model
       ];
 
       public function products(){
-        return $this->hasMany('App/cart');
+        return $this->hasMany(Products::class);
     }
 }

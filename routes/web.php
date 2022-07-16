@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('add-to-cart/{id}', [ProductsController::class,  'addToCart'])->name('addCart');
 	Route::get('cartList', [ProductsController::class,  'cartList'])->name('cartList');
-	Route::get('remove-cart/{id}', [ProductsController::class,  'removeCart']);
+	Route::get('remove-cart/{id}', [ProductsController::class,  'removeCart'])->name('removeCart');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
