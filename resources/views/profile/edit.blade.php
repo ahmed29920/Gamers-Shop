@@ -1,106 +1,90 @@
 @extends('layouts.homeLayout')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="title">{{ __('Edit Profile') }}</h5>
-                </div>
-                <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
-                    <div class="card-body">
-                            @csrf
-                            @method('put')
+    <style>
 
-                            @include('alerts.success')
+    </style>
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label>{{ __('Name') }}</label>
-                                <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}">
-                                @include('alerts.feedback', ['field' => 'name'])
-                            </div>
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <label>{{ __('Email address') }}</label>
-                                <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email address') }}" value="{{ old('email', auth()->user()->email) }}">
-                                @include('alerts.feedback', ['field' => 'email'])
-                            </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{ __('Save') }}</button>
-                    </div>
-                </form>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-img">
+                {{-- <img src="./bg.jpg" width="200" alt="Profile Image"> --}}
+                <img class="avatar" src="{{ Auth::user()->gravatar }}" alt="">
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="title">{{ __('Password') }}</h5>
+            <div class="profile-nav-info">
+                <h3 class="user-name">{{ Auth::user()->name }}</h3>
+                <div class="address">
+                    <p id="state" class="state">New York,</p>
+                    <span id="country" class="country">USA.</span>
                 </div>
-                <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
-                    <div class="card-body">
-                        @csrf
-                        @method('put')
 
-                        @include('alerts.success', ['key' => 'password_status'])
-
-                        <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
-                            <label>{{ __('Current Password') }}</label>
-                            <input type="password" name="old_password" class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Password') }}" value="" required>
-                            @include('alerts.feedback', ['field' => 'old_password'])
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                            <label>{{ __('New Password') }}</label>
-                            <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
-                            @include('alerts.feedback', ['field' => 'password'])
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('Confirm New Password') }}</label>
-                            <input type="password" name="password_confirmation" class="form-control" placeholder="{{ __('Confirm New Password') }}" value="" required>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{ __('Change password') }}</button>
-                    </div>
-                </form>
             </div>
+            {{-- <div class="profile-option">
+        <div class="notification">
+          <i class="fa fa-bell"></i>
+          <span class="alert-message">3</span>
         </div>
-        <div class="col-md-4">
-            <div class="card card-user">
-                <div class="card-body">
-                    <p class="card-text">
-                        <div class="author">
-                            <div class="block block-one"></div>
-                            <div class="block block-two"></div>
-                            <div class="block block-three"></div>
-                            <div class="block block-four"></div>
-                            <a href="#">
-                                <img class="avatar" src="{{ Auth::user()->gravatar }}" alt="">
-                                <h5 class="title">{{ auth()->user()->name }}</h5>
-                            </a>
-                            <p class="description">
-                                {{  Auth::user()->role}}
-                            </p>
+      </div> --}}
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="main-bd">
+                    <div class="left-side">
+                        <div class="profile-side">
+                            <ul class="navbar-nav ">
+                                <li class="nav-item "><a class="nav-link " href="{{ route('profile.edit') }}">Orders</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item "><a class="nav-link " href="{{ route('editProfile') }}">User &
+                                        Email</a></li>
+                            </ul>
                         </div>
-                    </p>
-                    <div class="card-description">
-                        {{ __('Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...') }}
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="button-container">
-                        <button class="btn btn-icon btn-round btn-facebook">
-                            <i class="fa fa-facebook"></i>
-                        </button>
-                        <button class="btn btn-icon btn-round btn-twitter">
-                            <i class="fa fa-twitter"></i>
-                        </button>
-                        <button class="btn btn-icon btn-round btn-google">
-                            <i class="fa fa-google-plus"></i>
-                        </button>
-                    </div>
+            </div>
+            <div class="col-md-8">
+                <div class="py-5 ">
+                    {{-- orders --}}
+
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    
+
+
+                    @yield('profile_content')
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
 @endsection

@@ -11,7 +11,7 @@
         </button>
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
-        <span data-notify="message"><b>Gammers Shop</b> {{ Session::get('success') }}</span>
+        <span data-notify="message"><b>Gamers Shop</b> {{ Session::get('success') }}</span>
         <a href="#" target="_blank" data-notify="url"></a>
     </div>
 @endif
@@ -22,7 +22,7 @@
         </button>
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
-        <span data-notify="message"><b>Gammers Shop</b> {{ Session::get('error') }}</span>
+        <span data-notify="message"><b>Gamers Shop</b> {{ Session::get('error') }}</span>
         <a href="#" target="_blank" data-notify="url"></a>
     </div>
 @endif

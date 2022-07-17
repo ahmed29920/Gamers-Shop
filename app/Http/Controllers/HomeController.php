@@ -9,6 +9,9 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+
+use function Ramsey\Uuid\v1;
+
 class HomeController extends Controller
 {
 
@@ -92,5 +95,12 @@ class HomeController extends Controller
     function search(Request $request){
         $products = Product::where('title', 'like' , '%' . $request->input('search').'%')->get();
         return view('Product', ['products' => $products]);
+    }
+
+    // profile
+
+    public function editProfile()
+    {
+        return view('layouts.profile.edit');
     }
 }
