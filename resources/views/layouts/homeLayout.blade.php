@@ -46,7 +46,6 @@ if (Auth::check()) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&family=Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 </head>
 <style>

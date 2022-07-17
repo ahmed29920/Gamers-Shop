@@ -10,4 +10,7 @@ return [
     'cart' => 'Cart',
     'checkout' => 'Checkout',
 
+        // welcome
+        'welcome_to_gamers_shop' => 'Welcome to Gamers Shop',
+        'shop_categories' => 'Shop Categories',
 ];

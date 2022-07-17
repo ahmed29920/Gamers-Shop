@@ -9,4 +9,8 @@ return [
     'contact' => 'اتصال',
     'cart' => 'العربة',
     'checkout' => 'الدفع',
+
+    // welcome
+    'welcome_to_gamers_shop' => 'مرحبا بك في متجر اللاعبين',
+    'shop_categories' => 'فئات التسوق',
 ];

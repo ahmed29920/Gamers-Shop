@@ -11,7 +11,7 @@
                             <div class="col-md-6">
                                 <div class="detail-box">
                                     <h1>
-                                        Welcome to Gamers Shop
+                                        {{trans('main.welcome_to_gamers_shop')}}
                                     </h1>
                                     <p>
                                         There are many variations of passages of Lorem Ipsum available, but the majority
@@ -78,7 +78,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Shop categories
+                    {{trans('main.shop_categories')}}
                 </h2>
             </div>
             <div class="row">
@@ -172,9 +172,6 @@
                             <h5>
                                 Fast Delivery
                             </h5>
-                            <p>
-                                variations of passages of Lorem Ipsum available
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -187,9 +184,7 @@
                             <h5>
                                 Free Shiping
                             </h5>
-                            <p>
-                                variations of passages of Lorem Ipsum available
-                            </p>
+
                         </div>
                     </div>
                 </div>
@@ -202,9 +197,7 @@
                             <h5>
                                 Best Quality
                             </h5>
-                            <p>
-                                variations of passages of Lorem Ipsum available
-                            </p>
+
                         </div>
                     </div>
                 </div>
