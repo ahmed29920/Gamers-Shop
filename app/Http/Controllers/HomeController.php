@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Product;
 use App\Models\Offer;
-use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Auth;
+
 class HomeController extends Controller
 {
 
@@ -70,9 +69,7 @@ class HomeController extends Controller
     public function CategoryIndex($id)
     {
         return view('Category', [
-            'products' => Product::where('category_id', $id)->get() ,
-            'category' => Categorie::where('id' , $id)->get() ,
-            'carts' => Cart::where('user_id', Auth::user()->id)->get()
+            'products' => Product::where('category_id', $id)->get(), 'category' => Categorie::where('id', $id)->get()
         ]);
     }
 
@@ -89,8 +86,9 @@ class HomeController extends Controller
     }
 
     //search products
-    function search(Request $request){
-        $products = Product::where('title', 'like' , '%' . $request->input('search').'%')->get();
+    function search(Request $request)
+    {
+        $products = Product::where('title', 'like', '%' . $request->input('search') . '%')->get();
         return view('Product', ['products' => $products]);
     }
 }
