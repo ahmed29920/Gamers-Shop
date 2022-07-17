@@ -123,7 +123,7 @@ if (Auth::check()) {
                                     <ul class="dropdown-menu dropMenu" id="personDrop" aria-labelledby="dropdownMenu2">
                                         <li>
                                             <button class="dropdown-item" type="button">
-                                                <a href="{{ route('profile.edit') }}"
+                                                <a href="{{ route('editProfile') }}"
                                                     class="dropLink">{{ trans('main.profile') }}</a>
                                             </button>
                                         </li>

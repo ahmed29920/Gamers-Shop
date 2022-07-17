@@ -1,90 +1,37 @@
 @extends('layouts.homeLayout')
 
 @section('content')
-    <style>
-
-    </style>
-
-    <div class="container">
-        <div class="profile-header">
-            <div class="profile-img">
-                {{-- <img src="./bg.jpg" width="200" alt="Profile Image"> --}}
-                <img class="avatar" src="{{ Auth::user()->gravatar }}" alt="">
-            </div>
-            <div class="profile-nav-info">
-                <h3 class="user-name">{{ Auth::user()->name }}</h3>
-                <div class="address">
-                    <p id="state" class="state">New York,</p>
-                    <span id="country" class="country">USA.</span>
-                </div>
-
-            </div>
-            {{-- <div class="profile-option">
-        <div class="notification">
-          <i class="fa fa-bell"></i>
-          <span class="alert-message">3</span>
-        </div>
-      </div> --}}
-        </div>
-
-
+    <div class="container card">
         <div class="row">
-            <div class="col-md-4">
-                <div class="main-bd">
-                    <div class="left-side">
-                        <div class="profile-side">
-                            <ul class="navbar-nav ">
-                                <li class="nav-item "><a class="nav-link " href="{{ route('profile.edit') }}">Orders</a>
-                                </li>
-                                <hr>
-                                <li class="nav-item "><a class="nav-link " href="{{ route('editProfile') }}">User &
-                                        Email</a></li>
-                            </ul>
-                        </div>
+            <div class="col-md-4 bg-light border-right">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mt-2">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">{{trans('main.home')}}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{trans('main.my_account')}}</li>
+                    </ol>
+                </nav>
+                <div class="left-side">
+                    <h1>{{trans('main.my_account')}}</h1>
+                    <div class="list-group">
+                        {{-- <button type="button" class="list-group-item list-group-item-action  {{ '/edit-account' == request()->path() ? 'active' : '' }}">
+                            <a class="nav-link text-dark" href="{{ route('editProfile') }}">User & Email <i
+                                    class="fa fa-user ml-5"></i></a>
+                        </button> --}}
+                        <a href="{{ route('editProfile') }}" class="list-group-item list-group-item-action {{  'en/edit-account' == request()->path() ? 'active' : '' }}">{{trans('main.user_email')}}<i
+                                class="fa fa-user ml-5"></i></a>
+                        <a href="{{ route('orders') }}" class="list-group-item list-group-item-action {{ 'en/orders'  == request()->path() ? 'active' : '' }}">{{trans('main.orders')}}<i
+                                class="fa f ml-5"></i></a>
+
                     </div>
+
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="py-5 ">
-                    {{-- orders --}}
-
-                    <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    
-
-
                     @yield('profile_content')
                 </div>
             </div>
         </div>
     </div>
     </div>
-
 @endsection

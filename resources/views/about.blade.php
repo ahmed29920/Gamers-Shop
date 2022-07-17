@@ -14,7 +14,8 @@
           <div class="detail-box pr-md-3">
             <div class="heading_container text-dark">
               <h2>
-                We Provide Best For You
+                {{trans('main.we_brovide_best_for_you')}}
+
               </h2>
             </div>
             <p class="text-dark">

@@ -7,7 +7,8 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Shop Categories
+          {{trans('main.shop_categories')}}
+          
         </h2>
       </div>
       <div class="row">
@@ -18,12 +19,12 @@
               <img src="{{ asset('upload/categories/' . $category->image) }}" alt="">
               <a href="{{ route('category' , $category->id) }}" class="add_cart_btn">
                 <span>
-                  View This 
+                  {{trans('main.view_this')}} 
                 </span>
               </a>
             </div>
             <div class="detail-box">
-              <h5>
+              <h5 class="text-center">
               {{$category->name}}
               </h5>
               <div class="product_info">

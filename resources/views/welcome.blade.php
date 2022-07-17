@@ -17,7 +17,7 @@
                                         There are many variations of passages of Lorem Ipsum available, but the majority
                                         have suffered alteration in some form, by injected humour </p>
                                     <a href="{{ route('about') }}">
-                                        Read More
+                                        {{trans('main.read_more')}}
                                     </a>
                                 </div>
                             </div>
@@ -42,7 +42,8 @@
                                             {{ $offer->description }}
                                         </p>
                                         <a href="{{ route('product', $offer->id) }}">
-                                            Read More
+                                        {{trans('main.read_more')}}
+                                            
                                         </a>
                                     </div>
                                 </div>
@@ -89,7 +90,7 @@
                                 <img src="{{ asset('upload/categories/' . $category->image) }}" alt="">
                                 <a href="{{ route('category', $category->id) }}" class="add_cart_btn">
                                     <span>
-                                        Read more
+                                      {{trans('main.read_more')}}
                                     </span>
                                 </a>
                             </div>
@@ -103,13 +104,14 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center"> No Categories Yet.</p>
+                    <p class="text-center"> {{trans('main.no_categories_yet')}}</p>
                 @endforelse
 
             </div>
             <div class="btn_box">
                 <a href="{{ route('shop') }}" class="view_more-link">
-                    View More
+                  {{trans('main.view_more')}}
+                    
                 </a>
             </div>
         </div>
@@ -126,7 +128,7 @@
                     <div class="detail-box pr-md-3">
                         <div class="heading_container">
                             <h2>
-                                We Provide Best For You
+                                {{trans('main.we_brovide_best_for_you')}}
                             </h2>
                         </div>
                         <p>
@@ -137,8 +139,9 @@
                             consequuntur vitae aperiam animi sint earum, ex unde cupiditate, molestias dolore quos quas
                             possimus eveniet facilis magnam? Vero, dicta.
                         </p>
-                        <a href="">
-                            Read More
+                        <a href="{{route('about')}}">
+                          {{trans('main.read_more')}}
+                            
                         </a>
                     </div>
                 </div>
@@ -159,7 +162,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Why Choose Us
+                    {{trans('main.why_choose_us')}}
                 </h2>
             </div>
             <div class="row">
@@ -170,7 +173,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Fast Delivery
+                              {{trans('main.fast_delivery')}}
                             </h5>
                         </div>
                     </div>
@@ -182,7 +185,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Free Shiping
+                              {{trans('main.fast_service')}}
                             </h5>
 
                         </div>
@@ -195,7 +198,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Best Quality
+                              {{trans('main.best_quality')}}
                             </h5>
 
                         </div>

@@ -103,4 +103,9 @@ class HomeController extends Controller
     {
         return view('layouts.profile.edit');
     }
+
+    public function orders()
+    {
+        return view('layouts.profile.orders');
+    }
 }

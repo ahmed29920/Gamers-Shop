@@ -71,7 +71,7 @@ if (Auth::check()) {
                     </a>
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
-                            <a href="{{ route('profile.edit') }}"
+                            <a href="{{ route('editProfile') }}"
                                 class="nav-item dropdown-item">{{ __('Profile') }}</a>
                         </li>
                         @if (Auth::user()->role == 'admin')
