@@ -23,7 +23,7 @@ if (Auth::check()) {
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>{{ trans('main.gamers_shop')}}</title>
+    <title>{{ trans('main.gamers_shop') }}</title>
 
 
     <!-- bootstrap core css -->
@@ -44,9 +44,17 @@ if (Auth::check()) {
     <link type="text/css" href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link type="text/css" href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&family=Vibes&display=swap" rel="stylesheet">
 
 </head>
 <style>
+    body {
+        font-family: 'Cairo', sans-serif;
+
+    }
+
     .scroll {
         position: relative;
     }
@@ -95,14 +103,14 @@ if (Auth::check()) {
                                 <a href="{{ route('register') }}" class="account-link">
                                     <i class="fa fa-laptop" aria-hidden="true"></i>
                                     <span>
-                                        Register
+                                        {{ trans('main.register') }}
                                     </span>
 
                                 </a>
                                 <a href="{{ route('login') }}" class="account-link">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     <span>
-                                        Login
+                                        {{ trans('main.login') }}
                                     </span>
 
                                 </a>
@@ -116,27 +124,30 @@ if (Auth::check()) {
                                     <ul class="dropdown-menu dropMenu" id="personDrop" aria-labelledby="dropdownMenu2">
                                         <li>
                                             <button class="dropdown-item" type="button">
-                                                <a href="{{ route('profile.edit') }}" class="dropLink">Profile</a>
+                                                <a href="{{ route('editProfile') }}"
+                                                    class="dropLink">{{ trans('main.profile') }}</a>
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item" type="button">
                                                 @if (Auth::user()->role == 'admin')
-                                                    <a href="{{ route('dashboard') }}" class="dropLink">Dashboard</a>
+                                                    <a href="{{ route('dashboard') }}"
+                                                        class="dropLink">{{ trans('main.dashboard') }}</a>
                                                 @else
-                                                    <a href="{{ route('home') }}" class="dropLink">Home</a>
+                                                    <a href="{{ route('home') }}"
+                                                        class="dropLink">{{ trans('main.home') }}</a>
                                                 @endif
                                             </button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item" type="button">
                                                 @if (Auth())
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                        style="display: none;">
+                                                    <form id="logout-form" action="{{ route('logout') }}"
+                                                        method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
                                                     <a href="{{ route('logout') }}" class="dropLink"
-                                                        onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+                                                        onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ trans('main.logout') }}</a>
                                                 @endif
                                             </button>
                                         </li>
@@ -158,8 +169,8 @@ if (Auth::check()) {
                 <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="">
-                            <span>
-                                {{ trans('main.gamers_shop')}}
+                            <span class="h1" style="font-family: 'Vibes', cursive;">
+                                {{ trans('main.gamers_shop') }}
                             </span>
                         </a>
 
@@ -172,19 +183,22 @@ if (Auth::check()) {
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ">
                                 <li class="nav-item {{ '/' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('home') }}">{{trans('main.home')}} <span
-                                            class="sr-only">(current)</span></a>
+                                    <a class="nav-link " href="{{ route('home') }}">{{ trans('main.home') }}
+                                        <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item {{ 'about' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('about') }}"> {{trans('main.about')}}</a>
+                                    <a class="nav-link " href="{{ route('about') }}">
+                                        {{ trans('main.about') }}</a>
                                 </li>
                                 <li class="nav-item {{ 'shop' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('shop') }}">{{trans('main.shop')}}</a>
+                                    <a class="nav-link " href="{{ route('shop') }}">{{ trans('main.shop') }}</a>
                                 </li>
                                 <li class="nav-item {{ 'contact' == request()->path() ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('contact.index') }}">{{trans('main.contact')}}</a>
+                                    <a class="nav-link"
+                                        href="{{ route('contact.index') }}">{{ trans('main.contact') }}</a>
                                 </li>
                                 <li class="nav-item">
+<<<<<<< HEAD
                                     <a class="nav-link cartLink" href="#">{{trans('main.cart')}}</a>
                                 </li>
                                 <li class="nav-item">
@@ -208,6 +222,13 @@ if (Auth::check()) {
                                             @endforeach
                                         </ul>
                                     </div>
+=======
+                                    <a class="nav-link"
+                                        href="{{ route('cartList') }}">{{ trans('main.cart') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">{{ trans('main.checkout') }}</a>
+>>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
                                 </li>
                                 <li class="">
                                     <div class="pt-2 d-felx ">
@@ -217,6 +238,28 @@ if (Auth::check()) {
                                             <i class='fas fa-sun'></i>
                                             <div class='ball'>
                                         </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropBtn dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-bs-toggle="dropdown">
+                                            {{-- <i class="fa fa-language" aria-hidden="true"></i> --}}
+                                                <img src="{{ asset('images/lang/ae.svg') }}" alt="">
+                                        </button>
+                                        <ul class="dropdown-menu dropMenu" id="personDrop"
+                                            aria-labelledby="dropdownMenu2">
+                                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                <li>
+                                                    
+                                                    <a class="dropdown-item" rel="alternate"
+                                                        hreflang="{{ $localeCode }}"
+                                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                        {{ $properties['native'] }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
@@ -282,15 +325,15 @@ if (Auth::check()) {
                     <div class="col-md-3">
                         <div class="info_contact">
                             <h5>
-                                <a href="" class="navbar-brand">
-                                    <span>
-                                        Gamers Shop
+                                <a href="{{ route('home') }}" class="navbar-brand">
+                                    <span class="h1" style="font-family: 'Vibes', cursive;">
+                                        {{ trans('main.gamers_shop') }}
                                     </span>
                                 </a>
                             </h5>
                             <p>
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                Cairo, Egypt
+                                {{ trans('main.cairo_egypt') }}
                             </p>
                             <p>
                                 <i class="fa fa-phone" aria-hidden="true"></i>
@@ -305,7 +348,7 @@ if (Auth::check()) {
                     <div class="col-md-3">
                         <div class="info_info">
                             <h5>
-                                Information
+                                {{ trans('main.information') }}
                             </h5>
                             <p>
                                 There are many variations of passages of Lorem Ipsum available, but the majority have
@@ -316,25 +359,26 @@ if (Auth::check()) {
                     <div class="col-md-3">
                         <div class="info_links">
                             <h5>
-                                Useful Link
+                                {{ trans('main.useful_link') }}
                             </h5>
                             <ul>
                                 <li>
                                     <a href="{{ route('home') }}">
-                                        Home
+                                        {{ trans('main.home') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('about') }}">
-                                        About
+                                        {{ trans('main.about') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('shop') }}">
-                                        Products
+                                        {{ trans('main.shop') }}
                                     </a>
                                 </li>
                                 <li>
+<<<<<<< HEAD
                                     <a href="">
                                         Cart
                                     </a>
@@ -342,6 +386,15 @@ if (Auth::check()) {
                                 <li>
                                     <a href="{{ route('cartList') }}">
                                         Checkout
+=======
+                                    <a href="{{ route('cartList') }}">
+                                        {{ trans('main.cart') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        {{ trans('main.checkout') }}
+>>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
                                     </a>
                                 </li>
                                 {{-- <li>
@@ -400,6 +453,7 @@ if (Auth::check()) {
         <script src="{{ asset('black/js/core/jquery.min.js') }}"></script>
         <script src="{{ asset('black/js/core/bootstrap.min.js') }}"></script>
         <script src="{{ asset('black/js/core/popper.min.js') }}"></script>
+        <script src="{{ asset('js.custom.js') }}"></script>
 
 
         {{-- <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script> --}}
@@ -444,10 +498,17 @@ if (Auth::check()) {
             });
         </script>
         <script>
+<<<<<<< HEAD
             $().ready(function(){
                 
                     $('div.alert').delay(3000);
                     $('div.alert').hide(2000);
+=======
+            $().ready(function() {
+
+                $('div.alert').delay(3000);
+                $('div.alert').hide(2000);
+>>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
             });
         </script>
         <script>

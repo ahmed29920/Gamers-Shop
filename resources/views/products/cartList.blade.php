@@ -11,14 +11,18 @@
         </button>
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
-        <span data-notify="message"><b>Gammers Shop</b> {{ Session::get('success') }}</span>
+        <span data-notify="message"><b>Gamers Shop</b> {{ Session::get('success') }}</span>
         <a href="#" target="_blank" data-notify="url"></a>
     </div>
 @endif
 <div data-notify="container" id="DangerAlert" class="col-xs-11 col-sm-4 alert alert-danger alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: none; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
+<<<<<<< HEAD
         <span data-notify="message"><b>Gammers Shop</b> Product Removed From Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
+=======
+        <span data-notify="message"><b>Gamers Shop</b> {{ Session::get('error') }}</span>
+>>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
         <a href="#" target="_blank" data-notify="url"></a>
 </div>
 <!-- <div class=" d-flex justify-content-center">

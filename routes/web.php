@@ -42,8 +42,46 @@ Route::group(
 		Route::get('/product-search', [App\Http\Controllers\HomeController::class,  'search'])->name('search');
 		// Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 		Route::resource('/contact', App\Http\Controllers\ContactController::class)->except('contact.show');
+
+
+		Route::get('/login/{provider}', [SocialAccountController::class, 'redirectToProvider'])->name('google');
+		Route::get('/login/{provider}/callback', [SocialAccountController::class, 'handleProviderCallback']);
+		// Route::get('google', [SocialiteAuthController::class, 'googleRedirect'])->name('auth/google');
+		// Route::get('/auth/google-callback', [SocialiteAuthController::class, 'loginWithGoogle']);
+
+		Auth::routes();
+
+		Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+
+			Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+			Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
+			Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
+			Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
+			Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
+			Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
+			Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
+			Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
+			Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+			Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+			Route::resource('/categories', CategoriesController::class);
+			Route::resource('/products', ProductsController::class)->except('show');
+			Route::resource('/offer', OffersController::class);
+		});
+
+		Route::group(['middleware' => 'auth'], function () {
+
+			Route::get('add-to-cart/{id}', [ProductsController::class,  'addToCart'])->name('addCart');
+			Route::get('cartList', [ProductsController::class,  'cartList'])->name('cartList');
+			Route::get('remove-cart/{id}', [ProductsController::class,  'removeCart'])->name('removeCart');
+			Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+			Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+			Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+			Route::get('edit-account', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('editProfile');
+			Route::get('orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
+		});
 	}
 );
+<<<<<<< HEAD
 
 
 Route::get('/login/{provider}', [SocialAccountController::class, 'redirectToProvider'])->name('google');
@@ -80,3 +118,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
+=======
+>>>>>>> 183b6738fc98806f3879312ebdb86533892d070b

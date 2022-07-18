@@ -9,6 +9,9 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+
+use function Ramsey\Uuid\v1;
+
 class HomeController extends Controller
 {
 
@@ -93,5 +96,17 @@ class HomeController extends Controller
         $products = Product::where('category_id', $category[0]->id)->get() ;
         return view('Category' , ['category' => $category ,'products' => $products ]);
 
+    }
+
+    // profile
+
+    public function editProfile()
+    {
+        return view('layouts.profile.edit');
+    }
+
+    public function orders()
+    {
+        return view('layouts.profile.orders');
     }
 }

@@ -8,7 +8,7 @@
         </button>
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
-        <span data-notify="message"><b>Gammers Shop</b> Product added To Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
+        <span data-notify="message"><b>Gamers Shop</b> Product added To Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
         <a href="#" target="_blank" data-notify="url"></a>
 </div>
     <section class="" style="margin-top:10rem">
