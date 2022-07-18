@@ -2,7 +2,14 @@
 
 @section('content')
   <!-- product section -->
-
+@if(Session('error'))
+    <div data-notify="container" id="alert" class="col-xs-11 col-sm-4 alert alert-danger alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
+        <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
+        <span data-notify="title"></span> 
+        <span data-notify="message"><b>Gammers Shop</b> {{ Session::get('error') }}</span>
+        <a href="#" target="_blank" data-notify="url"></a>
+    </div>
+@endif
   <section class="product_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">

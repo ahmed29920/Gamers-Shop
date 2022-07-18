@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12 ">
                     <div class="titlepage">
-                        <h2><strong class="black"> Contact</strong> Us</h2>
+                        <h2><strong class="black"> {{ trans('main.contact_us') }}</strong></h2>
                         <span style="text-align: center;">available, but the majority have suffered alteration in some
                             form, by injected randomised words which don't look even slightly believable</span>
                         </div>
@@ -97,7 +97,7 @@
                             @enderror
                             <div class="submit_btn text-center">
                                 <button type="submit" class="btn btn-primary"
-                                    style="background: #081b30; color: #fff; padding: 11px;">Send</button>
+                                    style="background: #081b30; color: #fff; padding: 11px;">{{ trans('main.send') }}</button>
                             </div>
                         </form>
                     </div>

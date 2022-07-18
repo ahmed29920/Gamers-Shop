@@ -72,7 +72,7 @@ class HomeController extends Controller
      */
     public function CategoryIndex($id)
     {
-        dd(Cart::where('user_id', Auth::user()->id)->get());
+        // dd(Cart::where('user_id', Auth::user()->id)->get());
         return view('Category', [
             'products' => Product::where('category_id', $id)->get() ,
             'category' => Categorie::where('id' , $id)->get() 
@@ -94,8 +94,14 @@ class HomeController extends Controller
     //search category
     function search(Request $request){
         $category = Categorie::where('name', 'like' , '%' . $request->input('search').'%')->get();
-        $products = Product::where('category_id', $category[0]->id)->get() ;
-        return view('Category' , ['category' => $category ,'products' => $products ]);
+        if (count($category) > 0) {
+            $products = Product::where('category_id', $category[0]->id)->get() ;
+            return view('Category' , ['category' => $category ,'products' => $products ]);
+        }
+        else{
+            Session()->flash('error', 'Category not exist');
+            return view('shop', ['categories' => Categorie::all()]);
+        }
 
     }
 

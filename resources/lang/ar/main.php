@@ -49,5 +49,26 @@ return [
     'password' => 'كلمة السر',
     'get_started' => 'البدء',
 
+    //category
+    'no_products_yet' => 'هذه الفئة لا تحتوي على منتجات',
 
+    //contact us
+    'contact_us' => 'تواصل معنا',
+    'send' => 'ارسال ',
+
+    //checkout
+    'image' => 'الصورة',
+    'product' =>'المنتج', 
+    'price' => 'السعر' , 
+    'quantity' => 'الكمية', 
+    'remove' => 'حذف' , 
+    'total' => 'الأجمالي',
+    'remove_from_cart' => 'حذف من العربة' , 
+    'your_cart_is_empty' => 'لا يوجد منتجات بالعربة' ,
+    'subtotal' => 'الأجمالي',  
+    'tax' => 'ضريبة', 
+    'shipping' => 'التوصيل' , 
+    'grand_total' => 'المبلغ الكلي',
+    'egb' => 'جم' ,
+    'shopping_cart' => 'عربة التسوق' ,
 ];

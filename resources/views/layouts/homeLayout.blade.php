@@ -278,7 +278,7 @@ if (Auth::check()) {
 
         <div class="content">
         <aside>
-            <h1 id="close"> Shopping Cart <i class="fa fa-close" style="float : right ; padding-right :5px"></i></h1>
+            <h1 id="close"> {{ trans('main.shopping_cart') }} <i class="fa fa-close" style="float : right ; padding-right :5px"></i></h1>
             <nav>
                 <ul class="cartList">
 
@@ -286,8 +286,8 @@ if (Auth::check()) {
             </nav>
             <div class="vertical-line"></div>
             <span class="total"></span> <br>
-            <a class="btn btn-info btn-sm mt-3" Type="submit" href="{{route('cartList')}}" style="width:90%">View Cart</a> <br>
-            <a class="btn btn-success btn-sm mt-2 mb-4" Type="submit" href="#" style="width:90%">Checkout</a>
+            <a class="btn btn-info btn-sm mt-3" Type="submit" href="{{route('cartList')}}" style="width:90%">{{ trans('main.cart') }}</a> <br>
+            <a class="btn btn-success btn-sm mt-2 mb-4" Type="submit" href="#" style="width:90%">{{ trans('main.checkout') }}</a>
         </aside>
 
             @yield('content')
@@ -502,7 +502,7 @@ if (Auth::check()) {
                                 sum += parseFloat($(this).text());
                             });
                             if (sum) {
-                                $('.total').text('subtotal    :   ' + sum + '      EGB');
+                                $('.total').text('{{ trans("main.subtotal") }}    :   ' + sum + '      {{ trans("main.egb") }}');
                             }
                         }
                     },

@@ -47,7 +47,7 @@
                     </div>
                 @empty
                     <div class="heading_center"style="width:100%">
-                        <p class="text-center ">No Products Yet.</p>
+                        <p class="text-center ">{{ trans('main.no_products_yet') }}.</p>
                     </div>
                 @endforelse
             </div>

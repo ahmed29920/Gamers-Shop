@@ -48,5 +48,27 @@ return [
     'email' => 'Email',
     'password' => 'Password',
     'get_started' => 'Get Started',
-    
+
+    //category
+    'no_products_yet' => 'No Products Yet',
+
+    //contact us
+    'contact_us' => 'Contact Us ',
+    'send' => ' Send ',
+
+    //checkout
+    'image' => 'Image',
+    'product' =>'Product', 
+    'price' => 'Price' , 
+    'quantity' => 'Quantity', 
+    'remove' => 'Remove' , 
+    'total' => 'Total',
+    'remove_from_cart' => 'Remove From Cart' ,
+    'your_cart_is_empty' => 'Your Cart Is Empty' ,
+    'subtotal' => 'Subtotal',  
+    'tax' => 'Tax', 
+    'shipping' => 'Shipping' , 
+    'grand_total' => 'Grand Total',
+    'egb' => 'EGB' ,
+    'shopping_cart' => 'Shopping Cart' ,
 ];

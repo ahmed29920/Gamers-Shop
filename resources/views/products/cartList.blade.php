@@ -23,16 +23,15 @@
 </div>
 <!-- <div class=" d-flex justify-content-center">
     <a class="btn btn-success text-center " href="order-now"> BUY NOW </a>
-</div> -->
-<h1>Shopping Cart</h1> <br>
-<div class="shopping-cart">
+</div> --> <br>
+<div class="shopping-cart mt-2">
     <div class="column-labels">
-        <label class="product-image">Image</label>
-        <label class="product-details">Product</label>
-        <label class="product-price">Price</label>
-        <label class="product-quantity text-center">Quantity</label>
-        <label class="product-removal">Remove</label>
-        <label class="product-line-price">Total</label>
+        <label class="product-image text-center">{{ trans('main.image') }}</label>
+        <label class="product-details"> {{ trans('main.product') }}</label>
+        <label class="product-price"> {{ trans('main.price') }}</label>
+        <label class="product-quantity text-center">{{ trans('main.quantity') }}</label>
+        <label class="product-removal text-center">{{ trans('main.remove') }}</label>
+        <label class="product-line-price">{{ trans('main.total') }}</label>
     </div>
         @foreach ($carts as $cart)
         <div class="product">
@@ -52,7 +51,7 @@
                 {{$cart->amount}}
             </div>
             <div class="product-removal">
-                <a class="btn btn-danger removeProduct"   Type="submit"  data-productid="{{$cart->id}}" >REMOVE FROM CART </a>
+                <a class="btn btn-danger removeProduct"   Type="submit"  data-productid="{{$cart->id}}" > {{ trans('main.remove_from_cart') }}</a>
             </div>
             @if (empty($product->discount))
             <div class="product-line-price price">{{ $cart->amount * $cart->price }}</div>
@@ -63,28 +62,26 @@
         @endforeach
         <div class="totals">
     <div class="totals-item">
-      <label>Subtotal</label>
+      <label> {{ trans('main.subtotal') }}</label>
       <div class="totals-value total" id="cart-subtotal"></div>
     </div>
     <div class="totals-item">
-      <label>Tax (5%)</label>
+      <label>{{ trans('main.tax') }} (5%)</label>
       <div class="totals-value" id="cart-tax">3.60</div>
     </div>
     <div class="totals-item">
-      <label>Shipping</label>
+      <label>{{ trans('main.shipping') }}</label>
       <div class="totals-value" id="cart-shipping">15.00</div>
     </div>
     <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
+      <label> {{ trans('main.grand_total') }}</label>
       <div class="totals-value" id="cart-total">90.57</div>
     </div>
   </div>
-      
-      <button class="checkout">Checkout</button>
-
+      <button class="checkout">{{ trans('main.checkout') }}</button>
 </div>
     @else
-        <h4 class="text-center mt-5"> Your Cart Is Empty </h4>  
+        <h4 class="text-center mt-5">{{ trans('main.your_cart_is_empty') }}  </h4>  
     @endif   
    
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="

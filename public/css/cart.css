@@ -74,14 +74,15 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
   }
   
   /* Column headers */
+  
   .column-labels label {
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
   }
-  .column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
+  /* .column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
     text-indent: -9999px;
-  }
+  } */
   
   /* Product entries */
   .product {
@@ -116,7 +117,9 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
   .product .remove-product:hover {
     background-color: #a44;
   }
-  
+  .product-price {
+    margin : 0 !important;
+  }
   /* Totals section */
   .totals .totals-item {
     float: right;
