@@ -72,7 +72,6 @@ class HomeController extends Controller
      */
     public function CategoryIndex($id)
     {
-        // dd(Cart::where('user_id', Auth::user()->id)->get());
         return view('Category', [
             'products' => Product::where('category_id', $id)->get() ,
             'category' => Categorie::where('id' , $id)->get() 
