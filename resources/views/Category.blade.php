@@ -2,14 +2,16 @@
 
 @section('content')
 <link type="text/css" href="{{ asset('css/card.css') }}" rel="stylesheet" />
-<link type="text/css" href="{{ asset('css/side.css') }}" rel="stylesheet" />
 <div data-notify="container" id="alert" class="col-xs-11 col-sm-4 alert alert-info alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: none; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 50%; margin-top: -13px; z-index: 1062;">
-            <i class="tim-icons icon-simple-remove"></i>
-        </button>
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
         <span data-notify="message"><b>Gammers Shop</b> Product added To Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
+        <a href="#" target="_blank" data-notify="url"></a>
+</div>
+<div data-notify="container" id="DangerAlert" class="col-xs-11 col-sm-4 alert alert-danger alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: none; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
+        <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
+        <span data-notify="title"></span> 
+        <span data-notify="message"><b>Gammers Shop</b> Product Removed From Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
         <a href="#" target="_blank" data-notify="url"></a>
 </div>
     <section class="product_section layout_padding">
@@ -50,32 +52,11 @@
                 @endforelse
             </div>
         </div>
-    
-<aside>
+<aside class="asideCart">
   <h1 id="close"> Shopping Cart <i class="fa fa-close" style="float : right ; padding-right :5px"></i></h1>
   <nav>
-      <ul>
-            @forelse ($carts as $cart)
-            <li>
-              <img src="{{ asset('upload/products/' . $cart->product->image) }}" width="50px">
-              <span style="padding-left : 10%"> {{$cart->product->title}} </span>
-                <p style="padding-left : 4%">
-                    @if (empty($product->discount))
-                        {{$cart->amount}} x {{$cart->product->price}} EGB = 
-                        <span class="productPrice"> {{$cart->amount * $cart->product->price}} EGB </span>
-                        <a class="btn btn-danger" Type="submit" href="{{route('removeCart' , $cart->id)}}">REMOVE FROM CART </a>
-                    @else
-                        {{$cart->amount}} x {{$cart->product->discount}} EGB = 
-                        <span class="productPrice"> {{$cart->amount * $cart->product->discount}} EGB </span>
-                        <a class="btn btn-danger btn-sm" Type="submit" href="{{route('removeCart' , $cart->id)}}" style="float : right ; margin-right :20px"><i class="fa fa-close"></i></a>
-                    @endif
-                </p>
-            </li>
-            @empty
-            @endforelse
-            <li class="new">
+        <ul class="cartList">
 
-            </li>
         </ul>
   </nav>
   
@@ -91,12 +72,9 @@
     <script>
         $('.add').on('click', function(event) {
             event.preventDefault()
-
             productId = event.target.dataset['productid'];
             counter = $('.cart-counter').text();
             count = Number(counter);
-            // alert(productId)
-            // $('.cart-counter').text( count + 1  ); 
             $.ajax({
                 method: 'GET',
                 url: '/add-to-cart/' + productId,
@@ -106,31 +84,89 @@
                     amount : '1'
                 },
                 success: function(data) {
+                    $('.cartList').children().remove();
                     $('.cart-counter').text(count + 1);
                     $('#alert').show();
                     $('#alert').delay(5000).show().fadeOut('slow');
                     $('aside').show();
-                    // console.log(data);
-                    $('.new').html(
-                        '<span style="padding-left : 10%"> '+ data["amount"] +' </span>'
-                    );
+                    const products = JSON.parse(data);
+                    console.log(products);
+                    var lis = $('.cartList li').length;
+                    var len = products.length;
+                    var diffrance = len - lis ;
+                    for (var i = 0; i <= len; i++) {
+                        var li = $("<li></li>");
+                        li.append(' <img src=" {{ asset("upload/products/ ' + products[i].image + ' ") }} " width="50px" class="imamamg"  /> ');
+                        li.append('<span style="padding-left : 10%"> ' + products[i].title + '</sapn>');
+                        if (products[0].discount) {
+                            li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee; width:90%"> ' + products[i].amount + 'X' +  products[i].discount + ' EGB   = <span class="prodPrice"> '  +  products[i].amount *  products[i].discount  + ' EGB </span> </p>');
+                        }
+                        else{
+                            li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee;width:90%"> ' + products[i].amount + 'X' +  products[i].price + ' EGB   = <span class="prodPrice"> '  +  products[i].amount *  products[i].price  + ' EGB </span> </p>');
+                        }
+                        li.append('<a  class="btn btn-danger remove btn-sm" style="float : right ; margin-right :20px ; margin-top :-55px" data-cartproduct="' + products[i].id + ' "> <i class="fa fa-close"></i> </a>');
+                        $(".cartList").append(li);
+                        var sum = 0;
+                        $('.prodPrice').each(function(){
+                            sum += parseFloat($(this).text());
+                        });
+                        if (sum ) {
+                            $('.total').text('subtotal    :   ' + sum  / 2+ '      EGB');
+                        }
+                    }
+                    
+                },
+            })
+        });
+        
 
+        $(document).on('click', '.remove', function(e) {
+            e.preventDefault()
+            var li = $(this).parent().remove();
+            productId = e.target.dataset['cartproduct'];
+            counter = $('.cart-counter').text();
+            count = Number(counter);
+            console.log(productId)
+            $.ajax({
+                method: 'GET',
+                url: '/remove-cart/' + productId,
+                cache: false,
+                data: {
+                    cart_id: productId ,
+                },
+                success: function(data) {
+                    $('#DangerAlert').show();
+                    $('#DangerAlert').delay(5000).show().fadeOut('slow');
+                    $('aside').show();
+                    $('.cart-counter').text(count - 1);
+                    const products = JSON.parse(data);
+                    console.log(products);
+                    for (var i = 0; i <= products.length; i++) {
+                        var li = $("<li></li>");
+                        li.append('<img src="{{ asset("upload/products/ ' + products[i].image + ' ") }}" width="50px" />');
+                        li.append('<span style="padding-left : 10%"> ' + products[i].title + '</sapn>');
+                        if (products[0].discount) {
+                            li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee;"> ' + products[i].amount + 'X' +  products[i].discount + ' EGB   = <span class="prodPrice mb-1"> '  +  products[i].amount *  products[i].discount  + ' EGB </span> </p>');
+                        }
+                        else{
+                            li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee;"> ' + products[i].amount + 'X' +  products[i].price + ' EGB   = <span class="prodPrice mb-1"> '  +  products[i].amount *  products[i].price  + ' EGB </span> </p>');
+                        }
+                        li.append('<a class="btn btn-danger remove btn-sm" style="float : right ; margin-right :20px" data-productid="' + products[i].product_id + ' "> <i class="fa fa-close remove"></i> </a>');
+                        var sum = 0;
+                        $('.prodPrice').each(function(){
+                            sum += parseFloat($(this).text());
+                        });
+                        if (sum) {
+                            $('.total').text('subtotal    :   ' + sum + '      EGB');
+                        }
+                        $(".cartList").append(li);
+                    }
                 },
             })
         });
 
-        window.onload = function() {
-            var sum = 0;
-            $('.productPrice').each(function(){
-               sum += parseFloat($(this).text());
-            });
-            if (sum) {
-                $('.total').text('subtotal    :   ' + sum + '      EGB');
-            }
-        }
-
-        $('#close').on('click', function(event) {
-            $('aside').show().fadeOut('slow'); 
+        $(document).on('click', '#close', function(e) {
+            $('.asideCart').show().fadeOut('slow'); 
         });
     </script>
 @endsection

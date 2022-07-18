@@ -40,6 +40,7 @@ if (Auth::check()) {
     <!-- Custom styles for this template  public\css\style.scss-->
     <link type="text/css" href="{{ asset('black/css/black-dashboard.css.map') }}" rel="stylesheet" />
     <link type="text/css" href="{{ asset('black/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('css/side.css') }}" rel="stylesheet" />
     <link type="text/css" href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link type="text/css" href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
@@ -184,10 +185,10 @@ if (Auth::check()) {
                                     <a class="nav-link" href="{{ route('contact.index') }}">{{trans('main.contact')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cartList') }}">{{trans('main.cart')}}</a>
+                                    <a class="nav-link cartLink" href="#">{{trans('main.cart')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">{{trans('main.checkout')}}</a>
+                                    <a class="nav-link" href="{{ route('cartList') }}">{{trans('main.checkout')}}</a>
                                 </li>
                                 <li>
                                     <div class="dropdown">
@@ -259,6 +260,19 @@ if (Auth::check()) {
         </script>
 
         <div class="content">
+        <aside>
+            <h1 id="close"> Shopping Cart <i class="fa fa-close" style="float : right ; padding-right :5px"></i></h1>
+            <nav>
+                <ul class="cartList">
+
+                </ul>
+            </nav>
+            <div class="vertical-line"></div>
+            <span class="total"></span> <br>
+            <a class="btn btn-info btn-sm mt-3" Type="submit" href="{{route('cartList')}}" style="width:90%">View Cart</a> <br>
+            <a class="btn btn-success btn-sm mt-2 mb-4" Type="submit" href="#" style="width:90%">Checkout</a>
+        </aside>
+
             @yield('content')
         </div>
         <!-- info section -->
@@ -321,12 +335,12 @@ if (Auth::check()) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('cartList') }}">
+                                    <a href="">
                                         Cart
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="{{ route('cartList') }}">
                                         Checkout
                                     </a>
                                 </li>
@@ -429,14 +443,102 @@ if (Auth::check()) {
                 }
             });
         </script>
-                <script>
-            // $("#alert").delay(1000).hide();
-            
+        <script>
             $().ready(function(){
                 
                     $('div.alert').delay(3000);
                     $('div.alert').hide(2000);
             });
+        </script>
+        <script>
+            $('.cartLink').on('click', function(event) {
+                event.preventDefault()
+                $.ajax({
+                    method: 'GET',
+                    url: '/cartSide/' ,
+                    cache: false,
+                    data: {
+                    },
+                    success: function(data) {
+                        $('.cartList').children().remove();
+                        $('aside').show();
+                        const products = JSON.parse(data);
+                        console.log(products);
+                        var lis = $('.cartList li').length;
+                        var len = products.length;
+                        console.log(products[0].id)
+                        for (var i = 0; i <= len; i++) {
+                            var li = $("<li></li>");
+                            li.append(' <img src=" {{ asset("upload/products/ ' + products[i].image + ' ") }} " width="50px" class="imamamg"  /> ');
+                            li.append('<span style="padding-left : 10%"> ' + products[i].title + '</sapn>');
+                            if (products[0].discount) {
+                                li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee; width:90%"> ' + products[i].amount + 'X' +  products[i].discount + ' EGB   = <span class="productPrice"> '  +  products[i].amount *  products[i].discount  + ' EGB </span> </p>');
+                            }
+                            else{
+                                li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee;width:90%"> ' + products[i].amount + 'X' +  products[i].price + ' EGB   = <span class="productPrice"> '  +  products[i].amount *  products[i].price  + ' EGB </span> </p>');
+                            }
+                            li.append('<a  class="btn btn-danger remove btn-sm" style="float : right ; margin-right :20px ; margin-top :-55px" data-cartproduct="' + products[i].id + ' "> <i class="fa fa-close"></i> </a>');
+                            $(".cartList").append(li);
+                            var sum = 0;
+                            $('.productPrice').each(function(){
+                                sum += parseFloat($(this).text());
+                            });
+                            if (sum) {
+                                $('.total').text('subtotal    :   ' + sum + '      EGB');
+                            }
+                        }
+                    },
+                })
+            });
+
+            $(document).on('click', '.remove', function(e) {
+            e.preventDefault()
+            var li = $(this).parent().remove();
+            productId = e.target.dataset['cartproduct'];
+            counter = $('.cart-counter').text();
+            count = Number(counter);
+            console.log(productId)
+            $.ajax({
+                method: 'GET',
+                url: '/remove-cart/' + productId,
+                cache: false,
+                data: {
+                    cart_id: productId ,
+                },
+                success: function(data) {
+                    $('#DangerAlert').show();
+                    $('#DangerAlert').delay(5000).show().fadeOut('slow');
+                    $('aside').show();
+                    $('.cart-counter').text(count - 1);
+                    const products = JSON.parse(data);
+                    console.log(products);
+                    for (var i = 0; i <= products.length; i++) {
+                        var li = $("<li></li>");
+                        li.append('<img src="{{ asset("upload/products/ ' + products[i].image + ' ") }}" width="50px" />');
+                        li.append('<span style="padding-left : 10%"> ' + products[i].title + '</sapn>');
+                        if (products[0].discount) {
+                            li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee;"> ' + products[i].amount + 'X' +  products[i].discount + ' EGB   = <span class="productPrice mb-1"> '  +  products[i].amount *  products[i].discount  + ' EGB </span> </p>');
+                        }
+                        else{
+                            li.append('<p style="padding-left : 4% ; border-bottom: 1px solid #eee;"> ' + products[i].amount + 'X' +  products[i].price + ' EGB   = <span class="productPrice mb-1"> '  +  products[i].amount *  products[i].price  + ' EGB </span> </p>');
+                        }
+                        li.append('<a class="btn btn-danger remove btn-sm" style="float : right ; margin-right :20px" data-productid="' + products[i].product_id + ' "> <i class="fa fa-close remove"></i> </a>');
+                        var sum = 0;
+                        $('.productPrice').each(function(){
+                            sum += parseFloat($(this).text());
+                        });
+                        if (sum) {
+                            $('.total').text('subtotal    :   ' + sum + '      EGB');
+                        }
+                        $(".cartList").append(li);
+                    }
+                },
+            })
+        });
+
+        $('#close').on('click', function(event) {
+            $('aside').show().fadeOut('slow'); 
+        });
         </script>
 </body>
 

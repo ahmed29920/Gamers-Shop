@@ -15,17 +15,12 @@
         <a href="#" target="_blank" data-notify="url"></a>
     </div>
 @endif
-@if(Session('error'))
-    <div data-notify="container" id="alert" class="col-xs-11 col-sm-4 alert alert-danger alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 50%; margin-top: -13px; z-index: 1062;">
-            <i class="tim-icons icon-simple-remove"></i>
-        </button>
+<div data-notify="container" id="DangerAlert" class="col-xs-11 col-sm-4 alert alert-danger alert-with-icon" role="alert" data-notify-position="bottom-right" style="display: none; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; bottom: 20px; right: 20px;">
         <span data-notify="icon" class="tim-icons icon-bell-55"></span> 
         <span data-notify="title"></span> 
-        <span data-notify="message"><b>Gammers Shop</b> {{ Session::get('error') }}</span>
+        <span data-notify="message"><b>Gammers Shop</b> Product Removed From Cart Successfully <a href="{{ route('cartList') }}">View cart</a> </span>
         <a href="#" target="_blank" data-notify="url"></a>
-    </div>
-@endif
+</div>
 <!-- <div class=" d-flex justify-content-center">
     <a class="btn btn-success text-center " href="order-now"> BUY NOW </a>
 </div> -->
@@ -57,7 +52,7 @@
                 {{$cart->amount}}
             </div>
             <div class="product-removal">
-            <a class="btn btn-danger" Type="submit" href="remove-cart/{{$cart->id}}">REMOVE FROM CART </a>
+                <a class="btn btn-danger removeProduct"   Type="submit"  data-productid="{{$cart->id}}" >REMOVE FROM CART </a>
             </div>
             @if (empty($product->discount))
             <div class="product-line-price price">{{ $cart->amount * $cart->price }}</div>
@@ -90,8 +85,43 @@
 </div>
     @else
         <h4 class="text-center mt-5"> Your Cart Is Empty </h4>  
-    @endif    
-    <script>
+    @endif   
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+  
+
+<script>
+
+
+$('.removeProduct').on('click', function(event) {
+    counter = $('.cart-counter').text();
+    count = Number(counter);
+    event.preventDefault()
+    productId = event.target.dataset['productid'];
+    var li =  $(this);
+    $.ajax({
+        method: 'GET',
+        url: '/remove-cart/' + productId,
+        cache: false,
+        data: {
+            cart_id: productId ,
+        },
+        success: function() {
+            li.parent().parent().remove();
+            $('.cart-counter').text(count - 1);
+            $('#DangerAlert').show();
+            $('#DangerAlert').delay(5000).show().fadeOut('slow');
+            var sum = 0;
+            $('.price').each(function(){
+               sum += parseFloat($(this).text());
+            });
+            if (sum) {
+                $('.total').text(sum);
+            }
+        },
+    })
+});
 
         window.onload = function() {
             var sum = 0;

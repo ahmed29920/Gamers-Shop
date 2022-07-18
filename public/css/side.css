@@ -20,9 +20,9 @@ aside .vertical-line{
 }
 
 aside{
-    /* display: none; */
+    display: none;
     position: absolute;
-    height: fit-content;
+    height:100%;
 	float:right;
 	width:300px;
 	padding-top:10px;
