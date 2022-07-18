@@ -90,7 +90,7 @@ class HomeController extends Controller
         return view('Product', ['products' => Product::where('id', $id)->get()]);
     }
 
-    //search products
+    //search category
     function search(Request $request){
         $category = Categorie::where('name', 'like' , '%' . $request->input('search').'%')->get();
         $products = Product::where('category_id', $category[0]->id)->get() ;
