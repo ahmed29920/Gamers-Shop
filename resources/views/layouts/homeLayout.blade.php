@@ -198,7 +198,6 @@ if (Auth::check()) {
                                         href="{{ route('contact.index') }}">{{ trans('main.contact') }}</a>
                                 </li>
                                 <li class="nav-item">
-<<<<<<< HEAD
                                     <a class="nav-link cartLink" href="#">{{trans('main.cart')}}</a>
                                 </li>
                                 <li class="nav-item">
@@ -222,13 +221,6 @@ if (Auth::check()) {
                                             @endforeach
                                         </ul>
                                     </div>
-=======
-                                    <a class="nav-link"
-                                        href="{{ route('cartList') }}">{{ trans('main.cart') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="">{{ trans('main.checkout') }}</a>
->>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
                                 </li>
                                 <li class="">
                                     <div class="pt-2 d-felx ">
@@ -378,15 +370,6 @@ if (Auth::check()) {
                                     </a>
                                 </li>
                                 <li>
-<<<<<<< HEAD
-                                    <a href="">
-                                        Cart
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('cartList') }}">
-                                        Checkout
-=======
                                     <a href="{{ route('cartList') }}">
                                         {{ trans('main.cart') }}
                                     </a>
@@ -394,7 +377,6 @@ if (Auth::check()) {
                                 <li>
                                     <a href="">
                                         {{ trans('main.checkout') }}
->>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
                                     </a>
                                 </li>
                                 {{-- <li>
@@ -498,17 +480,10 @@ if (Auth::check()) {
             });
         </script>
         <script>
-<<<<<<< HEAD
-            $().ready(function(){
-                
-                    $('div.alert').delay(3000);
-                    $('div.alert').hide(2000);
-=======
             $().ready(function() {
 
                 $('div.alert').delay(3000);
                 $('div.alert').hide(2000);
->>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
             });
         </script>
         <script>

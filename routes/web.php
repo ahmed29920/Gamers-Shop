@@ -81,7 +81,7 @@ Route::group(
 		});
 	}
 );
-<<<<<<< HEAD
+
 
 
 Route::get('/login/{provider}', [SocialAccountController::class, 'redirectToProvider'])->name('google');
@@ -118,5 +118,4 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
-=======
->>>>>>> 183b6738fc98806f3879312ebdb86533892d070b
+
