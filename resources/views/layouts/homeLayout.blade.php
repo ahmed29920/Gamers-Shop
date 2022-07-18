@@ -40,6 +40,7 @@ if (Auth::check()) {
     <!-- Custom styles for this template  public\css\style.scss-->
     <link type="text/css" href="{{ asset('black/css/black-dashboard.css.map') }}" rel="stylesheet" />
     <link type="text/css" href="{{ asset('black/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     <link type="text/css" href="{{ asset('css/side.css') }}" rel="stylesheet" />
     <link type="text/css" href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
@@ -202,25 +203,6 @@ if (Auth::check()) {
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('cartList') }}">{{trans('main.checkout')}}</a>
-                                </li>
-                                <li>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropBtn dropdown-toggle" type="button"
-                                            id="dropdownMenu2" data-bs-toggle="dropdown">
-                                            <i class="fa fa-language" aria-hidden="true"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropMenu" id="personDrop"
-                                            aria-labelledby="dropdownMenu2">
-                                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                                <li>
-                                                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
-                                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                                        {{ $properties['native'] }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
                                 </li>
                                 <li class="">
                                     <div class="pt-2 d-felx ">
