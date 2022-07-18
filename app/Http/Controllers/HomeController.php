@@ -75,8 +75,7 @@ class HomeController extends Controller
         dd(Cart::where('user_id', Auth::user()->id)->get());
         return view('Category', [
             'products' => Product::where('category_id', $id)->get() ,
-            'category' => Categorie::where('id' , $id)->get() ,
-            'carts' => Cart::where('user_id', Auth::user()->id)->get()
+            'category' => Categorie::where('id' , $id)->get() 
         ]);
     }
 
@@ -92,10 +91,12 @@ class HomeController extends Controller
         return view('Product', ['products' => Product::where('id', $id)->get()]);
     }
 
-    //search products
+    //search category
     function search(Request $request){
-        $products = Product::where('title', 'like' , '%' . $request->input('search').'%')->get();
-        return view('Product', ['products' => $products]);
+        $category = Categorie::where('name', 'like' , '%' . $request->input('search').'%')->get();
+        $products = Product::where('category_id', $category[0]->id)->get() ;
+        return view('Category' , ['category' => $category ,'products' => $products ]);
+
     }
 
     // profile

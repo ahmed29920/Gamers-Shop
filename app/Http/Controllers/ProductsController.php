@@ -140,12 +140,11 @@ class ProductsController extends Controller
             $cart->product_id = $request->input('product_id');
             $cart->amount = $request->input('amount');
             $cart->save();
-            // return redirect()->route('category', 1, [']);
-            // return redirect()->back();
-            $carts = Cart::all()->last();
-            // return redirect()->back()->with(compact($carts));
-            // return redirect()->back()->with($carts);
-            // return redirect()->back()->with('carts', $carts);   
+            $user_id = Auth::user()->id;
+            $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id);
+            // $carts =DB::table('carts')->join('products' , 'carts.product_id' , '=' , 'products.id')
+                                    //   ->select('carts.*' , 'products.*' )->get();  
+            // $carts = Cart::all();  
             return json_encode($carts);   
 
         } else {
@@ -167,12 +166,21 @@ class ProductsController extends Controller
         $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id);
         return view('products/cartList', ['carts' => $carts]);
     }
-    //remove product from cart
-    function removeCart($id)
+
+    //display cart items
+    function cartSide()
     {
+        $user_id = Auth::user()->id;
+        $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id);
+        return json_encode($carts);
+    }
+
+    //remove product from cart
+    function removeCart(Request $request)
+    {
+        $id = $request->input('cart_id');
         Cart::destroy($id);
         Session()->flash('error', 'product removed from cart successfuly.');
-
         return redirect()->back();
     }
 }
