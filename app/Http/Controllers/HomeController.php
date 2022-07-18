@@ -7,8 +7,8 @@ use App\Models\Product;
 use App\Models\Offer;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Auth;
 
 use function Ramsey\Uuid\v1;
 
@@ -72,6 +72,7 @@ class HomeController extends Controller
      */
     public function CategoryIndex($id)
     {
+        dd(Cart::where('user_id', Auth::user()->id)->get());
         return view('Category', [
             'products' => Product::where('category_id', $id)->get() ,
             'category' => Categorie::where('id' , $id)->get() ,

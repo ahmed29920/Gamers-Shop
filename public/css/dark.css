@@ -157,3 +157,6 @@
 [data-theme="dark"] .shopping-cart .product{
     background-color: #030e1a !important;
 }
+[data-theme="dark"] .img-box{
+    color: #fff !important;
+}

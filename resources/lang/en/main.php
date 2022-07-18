@@ -41,4 +41,12 @@ return [
     // footer
     'useful_link' => 'Useful Links',
     'information' => 'Information',
+
+    // Auth
+    'register' => 'Register',
+    'login' => 'Login',
+    'email' => 'Email',
+    'password' => 'Password',
+    'get_started' => 'Get Started',
+    
 ];

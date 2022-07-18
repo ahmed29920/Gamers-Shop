@@ -37,9 +37,17 @@ return [
     'confirm_new_password' => 'كلمة السر الجديدة مرة اخرى',
     'change_password' => 'تغيير كلمة السر',
     'save' => 'حفظ',
-    
+
     // footer
     'useful_link' => 'روابط مهمه',
     'information' => 'معلومات',
+
+    // Auth
+    'register' => 'التسجيل',
+    'login' => 'تسجيل الدخول',
+    'email' => 'البريد الالكترونى',
+    'password' => 'كلمة السر',
+    'get_started' => 'البدء',
+
 
 ];
