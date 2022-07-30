@@ -24,7 +24,6 @@
         </ul>
         <div class="copyright">
             &copy; {{ now()->year }} {{ __('made with') }} <i class="tim-icons icon-heart-2"></i> {{ __('by') }}
-            <a href="http://mohamed-ali.rf.gd/" target="_blank">{{ __('Mohamed Ali') }}</a> &amp;
             <a href="https://www.linkedin.com/in/ahmed-ashraf-4b7359222/" target="_blank">{{ __('Ahmed Ashraf') }}</a> {{ __('for a better web') }}.
         </div>
     </div>
