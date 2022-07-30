@@ -142,9 +142,6 @@ class ProductsController extends Controller
             $cart->save();
             $user_id = Auth::user()->id;
             $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id);
-            // $carts =DB::table('carts')->join('products' , 'carts.product_id' , '=' , 'products.id')
-                                    //   ->select('carts.*' , 'products.*' )->get();  
-            // $carts = Cart::all();  
             return json_encode($carts);   
 
         } else {
