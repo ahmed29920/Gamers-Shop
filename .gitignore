@@ -10,7 +10,6 @@ npm-debug.log
 yarn-error.log
 .env
 /package-lock.json
-/composer.lock
 /public/media/
 /public/upload/
 !/public/media/demo
