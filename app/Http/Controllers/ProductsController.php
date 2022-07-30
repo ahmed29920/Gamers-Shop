@@ -139,6 +139,7 @@ class ProductsController extends Controller
             $cart->user_id = Auth::user()->id;
             $cart->product_id = $request->input('product_id');
             $cart->amount = $request->input('amount');
+            $cart->status = 'pending';
             $cart->save();
             $user_id = Auth::user()->id;
             $carts = DB::select('select * FROM `products` INNER JOIN `carts` ON products.id = `product_id` WHERE user_id = ' . $user_id);
