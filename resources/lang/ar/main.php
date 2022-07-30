@@ -22,6 +22,7 @@ return [
     'view_this' => 'عرض المنتج',
     'no_categories_yet' => 'لا يوجد منتجات الان.',
     'we_brovide_best_for_you' => 'نحن نقدم الأفضل لك',
+    'gamers_shop_is_one_of_the_most_global_web_sites_that_provide_great_services_for_gammers' => 'متجر اللاعبين هو أحد المواقع العالمية التي تقدم خدمات عظيمة إلى اللاعبين',
 
     // profile
     'profile' => 'الملف الشخصى',

@@ -160,3 +160,6 @@
 [data-theme="dark"] .img-box{
     color: #fff !important;
 }
+[data-theme="dark"] .user-profile .left-side .user-profile-links a{
+    color: #fff !important;
+}

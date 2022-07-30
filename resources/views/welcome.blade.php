@@ -14,8 +14,8 @@
                                         {{trans('main.welcome_to_gamers_shop')}}
                                     </h1>
                                     <p>
-                                        There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have suffered alteration in some form, by injected humour </p>
+                                      {{trans('main.gamers_shop_is_one_of_the_most_global_web_sites_that_provide_great_services_for_gammers')}}
+                                    </p>
                                     <a href="{{ route('about') }}">
                                         {{trans('main.read_more')}}
                                     </a>

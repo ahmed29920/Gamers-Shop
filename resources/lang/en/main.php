@@ -22,6 +22,7 @@ return [
     'view_this' => 'View This',
     'no_categories_yet' => 'No Categories Yet.',
     'we_brovide_best_for_you' => 'We Provide Best For You',
+    'gamers_shop_is_one_of_the_most_global_web_sites_that_provide_great_services_for_gammers' => 'Gamers Shop is one of the most global web sites that provide great services for gammers',
 
     // profile
     'profile' => 'Profile',

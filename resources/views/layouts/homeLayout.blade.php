@@ -81,13 +81,13 @@ if (Auth::check()) {
                             <a href="">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <span>
-                                    Call : +20 106 839 1260
+                                    Call : +20 123456789
                                 </span>
                             </a>
                             <a href="">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 <span>
-                                    Email : mail@gamers-shop.net
+                                    Email : gamersShop@demo.com
                                 </span>
                             </a>
                         </div>
@@ -311,11 +311,11 @@ if (Auth::check()) {
                             </p>
                             <p>
                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                +20 106 839 1260
+                                +20 123456789
                             </p>
                             <p>
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                                mail@gamers-shop.net
+                                gamersShop@demo.com
                             </p>
                         </div>
                     </div>
@@ -325,8 +325,7 @@ if (Auth::check()) {
                                 {{ trans('main.information') }}
                             </h5>
                             <p>
-                                There are many variations of passages of Lorem Ipsum available, but the majority have
-                                suffered alteration in some form, by injected humour
+                            {{trans('main.gamers_shop_is_one_of_the_most_global_web_sites_that_provide_great_services_for_gammers')}}
                             </p>
                         </div>
                     </div>

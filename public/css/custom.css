@@ -200,3 +200,15 @@ body{
         padding-top: 0;
     }
 }
+/*  user profile  */
+.user-profile .left-side .user-profile-links a{
+    text-decoration: none;
+    color: #434f78;
+}
+
+.user-profile .left-side .user-profile-links .active{
+    background-color: #434f78;
+}
+.user-profile .left-side .user-profile-links .active a{
+    color: #fff;
+}
